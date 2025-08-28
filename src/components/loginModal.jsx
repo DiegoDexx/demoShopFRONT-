@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { usePost } from '../hooks/useFetch';
 import { useNavigate } from 'react-router-dom'; // Importa Navigate para redirigir
 import { loginUser } from '../actions/authActions'; // Importa la acción de login
-import logo from '../assets/img/logo_BLUE2.PNG';
+import logo from '../assets/img/logo_blue2.png';
 import {Link} from 'react-router-dom';
 
 const Login = ({ onClose }) => {

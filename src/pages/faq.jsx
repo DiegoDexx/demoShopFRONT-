@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../assets/img/logo_BLUE2.PNG';
+import logo from '../assets/img/logo_blue2.png';
 import Newsletter from '../components/newsletter';
 
 const FAQMoviles = () => {
