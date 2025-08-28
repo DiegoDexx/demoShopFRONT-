@@ -30,7 +30,7 @@ const NavBar = ({ showLoginModal, setShowLoginModal }) => {
     if (!confirm) return;
 
     try {
-      await post('http://127.0.0.1:8000/api/logout', {}, token);
+      await post('https://github.com/DiegoDexx/demoShopFRONTapi/logout', {}, token);
       dispatch(logoutUser());
       navigate("/home");
     } catch (error) {
