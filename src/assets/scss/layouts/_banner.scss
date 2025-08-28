@@ -1,0 +1,158 @@
+@import '../abstract/variables'; // Importamos las variables globales
+
+.banner {
+  position: relative;
+  width: 83.33%;
+  margin: 0 auto;
+  height: 450px;
+  overflow: hidden;
+  padding: 0.25rem;
+
+  .slider {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+.slide {
+  @include flex-container(row, left, left); // texto a la izquierda
+  position: relative;
+  min-width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+
+  // cuando está activa
+  &.active {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  // overlay estilo .banner .background
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: rgba(0, 0, 0, 0.4); // filtro oscuro
+    transform: scale(1.25); // efecto de "zoom" tipo parallax
+    background-size: cover;
+    background-position: center;
+  }
+
+  // contenedor del texto
+  .text-container {
+
+    position: relative;
+    left : 2rem;
+    top: 5rem;
+    z-index: 1; // por encima del overlay
+    max-width: 100%;
+    padding: 2rem;
+    color: #fff;
+    text-align: left;
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+     
+    }
+
+    button {
+      background: $primary-color;
+      border: none;
+      padding: 10px 20px;
+      color: white;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+
+      &:hover {
+        background-color: $secondary-color;
+      }
+    }
+  }
+}
+  }
+
+  .controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+
+    button {
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      font-size: 1.5rem;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+    }
+  }
+
+  @include mobile() {
+    height: 600px;
+    width: 90%;
+    .slider .slide {
+ 
+     margin: 0 auto;
+     align-content: center;
+
+      .text-container {
+        margin: 0 auto;
+        text-align: center;
+        @include flex-container(column, center, center);
+        flex: 1;
+        max-width: 90%;
+        margin-bottom: 8.2rem;
+        margin-right: 3rem;
+        padding: 20px;
+
+        h2 {
+          font-size: 3vh;
+        }
+
+        button {
+          justify-content: center;
+          font-size: 0.9rem;
+          padding: 10px 20px;
+        }
+      }
+    }
+  }
+
+  @include respond(tablet) {
+    height: 350px;
+
+    .slider .slide .text-container h2 {
+      font-size: 1.8rem;
+    }
+
+    .slider .slide .text-container button {
+      font-size: 1rem;
+      padding: 12px 25px;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

@@ -1,0 +1,261 @@
+// -- estilos base (mantengo tu estructura y mejoro algunos detalles) --
+.cart-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end; // bottom sheet feel
+  z-index: 9999;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  .cart-modal {
+    background: $tertiary-color;
+    border-radius: 12px;
+    padding: 20px;
+    width: 92%;
+    max-width: 520px;
+    box-shadow: 0 10px 30px rgba(10, 20, 30, 0.25);
+    position: relative;
+    transition: transform 0.25s ease, opacity 0.2s ease;
+
+    // handle opcional (pequeña barra arriba para UX)
+    .modal-handle {
+      width: 48px;
+      height: 4px;
+      background: rgba(0,0,0,0.08);
+      border-radius: 3px;
+      margin: -12px auto 8px;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: transparent;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: lighten($primary-color, 5%);
+      transition: color 0.15s ease;
+
+      &:hover { color: $primary-color; }
+    }
+
+    h2 {
+      margin: 6px 0 14px;
+      font-size: 1.125rem;
+      text-align: center;
+      color: $primary-color;
+      font-weight: 700;
+    }
+
+    .cart-items {
+      margin-top: 6px;
+      max-height: 42vh;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding-right: 6px;
+
+      .cart-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 6px;
+        border-bottom: 1px solid rgba(0,0,0,0.04);
+
+        .cart-item-image {
+          width: 64px;
+          height: 64px;
+          object-fit: cover;
+          border-radius: 8px;
+          flex-shrink: 0;
+          box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+        }
+
+        .cart-item-details {
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+          flex: 1;
+          min-width: 0;
+
+          h3 {
+            margin: 0;
+            font-size: 1rem;
+            color: $primary-color;
+            font-weight: 600;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+
+          p {
+            margin: 0;
+            font-size: 0.875rem;
+            color: #6b6b6b;
+          }
+
+          .subtotal {
+            font-weight: 700;
+            color: $primary-color;
+            font-size: 0.95rem;
+          }
+        }
+
+        .remove-button {
+          margin-left: 8px;
+          background: transparent;
+          border: none;
+          color: #e04b4b;
+          font-size: 14px;
+          cursor: pointer;
+          padding: 6px;
+          border-radius: 6px;
+          transition: background 0.12s ease, transform 0.08s ease;
+
+          &:hover {
+            background: rgba(224,75,75,0.08);
+            transform: translateY(-1px);
+          }
+        }
+      }
+    }
+
+    // total + shipping
+    .cart-total {
+      margin-top: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px;
+      border-radius: 8px;
+      background: rgba(0,0,0,0.02);
+
+      h3 {
+        font-size: 1rem;
+        font-weight: 700;
+        color: $primary-color;
+        margin: 0;
+      }
+
+      .total-amount {
+        font-size: 1.125rem;
+        font-weight: 800;
+        color: $primary-color;
+      }
+    }
+
+    .shipping-options {
+      margin-top: 12px;
+
+      h4 {
+        font-size: 0.95rem;
+        color: $primary-color;
+        margin-bottom: 8px;
+        font-weight: 600;
+      }
+
+      .options-container {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+
+        label {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          padding: 8px 10px;
+          border-radius: 10px;
+          font-size: 0.9rem;
+          color: #555;
+          border: 1px solid rgba(0,0,0,0.08);
+          cursor: pointer;
+          transition: all 0.12s ease;
+
+          input { margin: 0; accent-color: $primary-color; }
+
+          &:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.04); }
+
+          &.selected {
+            border: 1px solid $primary-color;
+            background: rgba($primary-color, 0.08); // slight tint
+            color: darken($primary-color, 10%);
+            font-weight: 700;
+          }
+        }
+      }
+    }
+
+    .checkout-button {
+      width: 100%;
+      padding: 12px;
+      background: $primary-color;
+      color: $tertiary-color;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 14px;
+      box-shadow: 0 8px 20px rgba($primary-color, 0.12);
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 24px rgba($primary-color, 0.16);
+      }
+    }
+
+    // ---------- MOBILE OVERRIDES: bottom-sheet, sticky checkout ----------
+    @include mobile() {
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+      border-radius: 12px 12px 0 0;
+      padding: 12px 14px 18px;
+      margin: 0;
+      align-self: center;
+
+      .modal-handle { margin-top: 0; margin-bottom: 8px; }
+
+      h2 { font-size: 1rem; margin-bottom: 8px; }
+
+      .close-button {
+        top: 10px;
+        right: 12px;
+        font-size: 20px;
+      }
+
+      .cart-items {
+        max-height: calc(100vh - 320px); // dejar espacio para total + checkout
+        margin-top: 8px;
+      }
+
+      .cart-item {
+        padding: 10px 6px;
+        .cart-item-image { width: 56px; height: 56px; border-radius: 8px; }
+        .cart-item-details h3 { font-size: 0.98rem; }
+      }
+
+      .cart-total {
+        position: sticky;
+        bottom: 72px; // encima del botón checkout sticky
+        z-index: 1201;
+        margin-top: 10px;
+      }
+
+      .checkout-button {
+        position: relative;
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        z-index: 1300;
+        padding: 14px;
+        border-radius: 12px;
+        font-size: 1.02rem;
+      }
+    } // end mobile
+  } // end cart-modal
+} // end overlay

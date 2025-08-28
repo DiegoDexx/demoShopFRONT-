@@ -1,0 +1,377 @@
+.footer {
+  @include flex-container(column, center, flex-start);
+  max-width: 83.33%;
+  width: 100%;
+  background-color: $fourth-color;
+  color: $tertiary-color;
+  padding: 30px 20px 30px 20px;
+  margin: 40px auto; // separación superior del contenido anterior
+
+  @include mobile() {
+    max-width: 93.33%;
+    padding: 20px;
+    margin: 20px auto; // separación superior del contenido anterior
+  }
+
+  .container {
+    padding: 1rem;
+
+    // ----------------- MAIN -----------------
+    .footer-main {
+      @include flex-container(row, space-between, center);
+      margin: 0 auto;
+      padding: 0 20px;
+      flex-wrap: nowrap;
+
+      .footer-logo {
+        @include flex-container(row, center, center);
+        width: 50%;
+        flex: 0 0 auto;
+
+        img {
+          width: 100%;
+          max-width: 150px;
+          object-fit: contain;
+        }
+
+        p {
+          font-size: 2rem;
+          font-weight: bold;
+          color: $secondary-color;
+          margin: 0;
+        }
+      }
+
+      .footer-menu {
+        flex: 1;
+        text-align: left;
+        margin-left: 20px;
+        padding: 0 50px;
+
+        h4 {
+          font-size: 1.2rem;
+          color: $primary-color;
+          margin-bottom: 10px;
+          text-align: left;
+        }
+
+        .footer-links {
+          @include flex-container(row, left, flex-start);
+          width: 100%;
+          gap: 18px;
+          flex: 1;
+          flex-wrap: nowrap;
+
+          ul {
+            list-style: none;
+            @include flex-container(column, left, flex-start);
+            gap: 10px;
+            padding: 0;
+            margin: 0;
+
+            li a,
+            a {
+              font-size: 1.1rem;
+              font-weight: 500;
+              color: $secondary-color;
+              text-decoration: none;
+              transition: color 0.3s;
+              text-align: left;
+
+              &:hover {
+                color: $secondary-color;
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // ----------------- SECONDARY -----------------
+    .footer-secondary {
+      @include flex-container(row, space-between, flex-start);
+      gap: 2rem;
+      margin-top: 2rem;
+      width: 100%;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 1.5rem;
+
+      .footer-payments,
+      .footer-sub {
+        flex: 1;
+        background-color: $fourth-color;
+        padding: 1rem;
+        border-radius: 8px;
+      }
+
+      .footer-payments {
+        text-align: left;
+
+        h4 {
+          font-size: 1.3rem;
+          color: $primary-color;
+          margin-bottom: 15px;
+        }
+
+        .payment-icons {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 15px;
+          margin: 10px 0;
+
+          img {
+            max-width: 50px;
+            height: auto;
+            object-fit: contain;
+          }
+
+          .secure-payment {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            color: $secondary-color;
+          }
+
+          p{
+            text-align: left;
+          }
+        }
+
+        p {
+          font-size: 0.9rem;
+          color: $secondary-color;
+          margin: 4px 0;
+        }
+      }
+
+      .footer-sub {
+        .text-center {
+          @include flex-container(column, center, center);
+          h4 {
+            font-size: 1.2rem;
+            color: $primary-color;
+            margin-bottom: 10px;
+            text-align: center;
+          }
+          .social-icons {
+            display: flex;
+            justify-content: flex-start;
+            gap: 15px;
+            margin-bottom: 10px;
+
+            a {
+              color: $secondary-color;
+              font-size: 1.5rem;
+              transition: color 0.3s;
+
+              &:hover {
+                color: $fourth-color;
+              }
+            }
+          }
+
+          p {
+            margin: 5px 0;
+            font-size: 0.9rem;
+            color: $secondary-color;
+            text-align: left;
+
+            a {
+              color: $secondary-color;
+              text-decoration: none;
+
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+    }
+    
+    // ----------------- RESPONSIVE -----------------
+    @include mobile() {
+        .footer-main {
+          flex-direction: column;
+          align-items: center;
+          padding: 0;
+          gap: 2rem;
+          .footer-logo {
+            width: 100%;
+            justify-content: center;
+            img {
+              max-width: 80px;
+            }
+            p {
+              font-size: 1.3rem;
+              text-align: center;
+            }
+          }
+          .footer-menu {
+            width: 100%;
+            margin-left: 0;
+            padding: 0;
+            h4 {
+              font-size: 1.1rem;
+              text-align: center;
+            }
+            .footer-links {
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              margin: 0 auto;
+              gap: 1rem;
+              ul {
+                align-items: center;
+                li a, a {
+                  font-size: 0.95rem;
+                  text-align: center;
+                }
+              }
+            }
+          }
+        }
+
+        .footer-secondary {
+          flex-direction: column;
+          gap: 1.2rem;
+          padding-top: 1rem;
+          .footer-payments,
+          .footer-sub {
+            width: 100%;
+            padding: 0.7rem;
+            text-align: center;
+          }
+          .footer-payments {
+            h4 {
+              font-size: 1rem;
+              text-align: center;
+            }
+            .payment-icons {
+              justify-content: center;
+              gap: 10px;
+              img {
+                max-width: 40px;
+              }
+            }
+            .secure-payment {
+              font-size: 1.1rem;
+              justify-content: center;
+            }
+            p {
+              font-size: 0.85rem;
+              text-align: center;
+            }
+          }
+          .footer-sub {
+            .text-center {
+              .social-icons {
+                justify-content: center;
+                gap: 10px;
+                a {
+                  font-size: 1.2rem;
+                }
+              }
+              p {
+                font-size: 0.85rem;
+                text-align: center;
+              }
+            }
+          }
+        }
+}
+
+@include tablet() {
+            .footer-main {
+          flex-direction: column;
+          align-items: center;
+          padding: 0;
+          gap: 2rem;
+          .footer-logo {
+            width: 100%;
+            justify-content: center;
+            img {
+              max-width: 80px;
+            }
+            p {
+              font-size: 1.3rem;
+              text-align: center;
+            }
+          }
+          .footer-menu {
+            width: 100%;
+            margin-left: 0;
+            padding: 0;
+            h4 {
+              font-size: 1.1rem;
+              text-align: center;
+            }
+            .footer-links {
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              margin: 0 auto;
+              gap: 1rem;
+              ul {
+                align-items: center;
+                li a, a {
+                  font-size: 0.95rem;
+                  text-align: center;
+                }
+              }
+            }
+          }
+        }
+
+        .footer-secondary {
+          flex-direction: column;
+          gap: 1.2rem;
+          padding-top: 1rem;
+          .footer-payments,
+          .footer-sub {
+            width: 100%;
+            padding: 0.7rem;
+            text-align: center;
+          }
+          .footer-payments {
+            h4 {
+              font-size: 1rem;
+              text-align: center;
+            }
+            .payment-icons {
+              justify-content: center;
+              gap: 10px;
+              img {
+                max-width: 40px;
+              }
+            }
+            .secure-payment {
+              font-size: 1.1rem;
+              justify-content: center;
+            }
+            p {
+              font-size: 0.85rem;
+              text-align: center;
+            }
+          }
+          .footer-sub {
+            .text-center {
+              .social-icons {
+                justify-content: center;
+                gap: 10px;
+                a {
+                  font-size: 1.2rem;
+                }
+              }
+              p {
+                font-size: 0.85rem;
+                text-align: center;
+              }
+            }
+          }
+        }
+}
+}
+}

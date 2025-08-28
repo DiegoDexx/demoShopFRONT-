@@ -1,0 +1,270 @@
+
+@import "../abstract/variables"; // Importa las variables globales
+@import "../abstract/mixins";    // Importa los mixins globales
+@import "../components/separator"; // Importa el componente de separador
+@import "../components/secondary_navbar"; // Importa la barra de navegación secundaria
+
+
+.search-results-page{
+  max-width: 100%;
+  margin: 0 auto;
+
+.search-results-navbar {
+    max-width: 83.33%;  
+    width: 100%;
+    margin: 0 auto;
+
+    
+  @include secondary-navbar();
+}
+
+
+}
+
+.product-list-container{
+    max-width: 83.33%!important;
+
+    margin: 0 auto;
+    @include flex-container(column, center, flex-start); // Centra el contenedor
+    padding: 0 1rem; // Espaciado interno
+ 
+    @include mobile() {
+        width: 100%;
+        padding: 0; // Elimina el padding en móviles
+    }
+
+
+    .header{  
+      @include flex-container(column, flex-start, flex-start); // Centra el contenido
+      gap: 0px;
+      padding: 0; // Espaciado interno
+      .line{
+        @include flex-container(row, flex-start, flex-start);
+        align-items: flex-start;
+        padding: 0; // Espaciado interno
+        margin: 0; // Espaciado interno
+        @include separator($secondary-color, $secondary-color, 5px, 70%); // Línea horizontal
+        margin-bottom: 2rem;
+        width: 70%;
+
+        @include mobile() {
+          width: 100%;
+          padding: 0 1rem;
+          align-items: center;
+          @include separator($secondary-color, $secondary-color, 5px, 100%); // Línea horizontal
+        }
+
+      }
+      
+    .title {
+    
+      @include flex-container(row, flex-start, left); // Centra el título a la izquierda
+      max-width: 100%;
+      text-align: left;
+      padding-top: 3rem;
+    
+      color: $secondary-color;
+      font-size: 1.6rem;
+      font-family: 'Rubik', sans-serif;
+      font-weight: 400;
+      line-height: 1;
+      .p1{
+    
+        font-size: 1.6rem;
+        color: $primary-color;
+        line-height: 1;
+        font-weight: 600;
+        padding-left: 10px;
+      }
+    
+      @include mobile() {
+
+        @include flex-container(column, center, center); // Centra el título en móviles
+        flex: 1;
+        text-align: center;
+        width: 100%;
+        font-size: 1.5rem;
+        padding-top: 2rem;
+
+        .p1{
+          color: $primary-color;
+          font-size: 1.5rem;
+          font-weight: 600;
+          padding-left: 10px;
+        }
+      }
+    }
+    }
+
+
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.6rem;
+  max-width: 100%;
+  width: 100%;
+  margin: 0 auto;
+
+  @include mobile() {
+    grid-template-columns: repeat(2, 1fr); // Dos columnas en móviles
+    gap: 0.2rem;
+  }
+
+  .product-card {
+    @include flex-container(column, center, center); // Centra el contenido
+    background: $tertiary-color;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 10px;
+    gap: 5px;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.2s;
+
+
+
+
+    &:hover {
+      transform: scale(1.02);
+      cursor: pointer;
+
+      .product-overlay {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .product-image {
+        filter: blur(2px) brightness(0.7); // Difumina y oscurece la imagen en hover
+      }
+    }
+
+  
+    
+      .product-image {
+        width: 80%;
+        max-height: 230px; // Ajusta la altura de la imagen
+
+        height: 100%;
+        object-fit: cover;
+        border-radius: 4px;
+      }
+    
+ 
+        .product-name {
+          font-size: 1.2rem !important;
+          font-weight: 500;
+          margin-bottom: 0.3rem;
+          color: $primary-color;
+        }
+    
+        .price-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+    
+          .original-price {
+            font-size: 1.2em;
+            color: $primary-color;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+          }
+        }
+      
+    
+
+    .product-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6); // Fondo semitransparente oscuro
+      color: $tertiary-color;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      opacity: 0; // Inicialmente oculto
+      transform: translateY(5%);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+
+
+      .add-to-cart-button {
+        background: rgba(255, 255, 255, 0.1);
+        color: $tertiary-color;
+        border: 1px solid $tertiary-color;
+        padding: 10px 20px;
+        cursor: pointer;
+        margin-top: 10px;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: $tertiary-color;
+          color: $primary-color;
+        }
+      }
+    }
+  }
+
+  .product-image {
+    width: 100%;
+    height: 20rem; // Mantiene la altura de las imágenes grandes
+    object-fit: cover;
+    border-radius: 4px;
+    transition: filter 0.3s ease; // Efecto suave en hover
+  }
+}
+
+  @include mobile() {
+
+  .product-list{
+    width: 100%;
+    padding: 0;
+
+
+
+    .product-card {
+      margin: 0 auto;
+
+      .product-image {
+
+        width: 150px;
+        // Reduce la altura de las imágenes en móviles
+      }
+
+      // .product-overlay {
+      //   opacity: 1; // Muestra el overlay por defecto
+      //   transform: translateY(0);
+      //   background: rgba(0, 0, 0, 0.4); // Fondo más ligero en móviles
+      // }
+
+      .product-name {
+        font-size: 1.2rem !important;
+        font-weight: 500;
+        margin-bottom: 0.3rem;
+        color: $primary-color;
+      }
+
+      .product-description {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+      } 
+
+      .price-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
+        .original-price {
+          font-size: 1.5em;
+          color: $primary-color;
+          text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+      }
+    }
+  }
+}
+}

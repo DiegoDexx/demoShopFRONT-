@@ -1,0 +1,152 @@
+
+.newsletter {
+  width: 83.33%;
+  margin: 2rem auto;
+  background-color: $secondary-color;
+  padding: 8rem;
+  border-radius: 1rem;
+  text-align: center;
+  color: #fff;
+  position: relative; // necesario para posicionar los círculos
+
+  // círculo superior izquierdo
+  &::before {
+    content: "";
+    position: absolute;
+    top: -40px;
+    left: -40px;
+    width: 120px;
+    height: 120px;
+    background: #fff;
+    border-radius: 50%;
+    z-index: 1;
+
+    @media (max-width: 768px) {
+      width: 70px;
+      height: 70px;
+      top: -20px;
+      left: -20px;
+    }
+  }
+
+  // círculo inferior derecho
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -60px;
+    right: -60px;
+    width: 150px;
+    height: 150px;
+    background: #fff;
+    border-radius: 50%;
+    z-index: 1;
+
+    @media (max-width: 768px) {
+      width: 90px;
+      height: 90px;
+      bottom: -30px;
+      right: -30px;
+    }
+  }
+
+  .header {
+    @include flex-container(column, center, center);
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 2; // contenido por encima de los círculos
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 1.4rem;
+    font-weight: 600;
+  }
+
+  p {
+    font-size: 1.2rem;
+    margin: 0;
+    color: #fff;
+  }
+
+  form {
+    @include flex-container(row, center, center);
+    max-width: 500px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+
+    input {
+      flex: 1;
+      padding: 0.8rem 1rem;
+      border: none;
+      border-radius: 2rem 0 0 2rem;
+      outline: none;
+      font-size: 1rem;
+    }
+
+    button {
+      background-color: #fff;
+      color: #008ECC;
+      border: none;
+      padding: 0.85rem;
+      border-radius: 0 2rem 2rem 0;
+      cursor: pointer;
+      transition: background 0.3s;
+
+      svg {
+        font-size: 1.2rem;
+      }
+
+      &:hover {
+        background-color: #f1f1f1;
+      }
+    }
+  }
+
+    @include mobile() {
+        width: 90%;
+        height: 150vw;
+        padding: 2.2rem 1rem;
+        border-radius: 0.8rem;
+        margin: 0 auto;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .header {
+          margin-bottom: 1.2rem;
+        }
+
+        h2 {
+          font-size: 1.7rem;
+          margin-bottom: 1rem;
+        }
+
+        p {
+          font-size: 1.1rem;
+        }
+
+        form {
+          flex-direction: column;
+          margin: 0 auto;
+          position: static;
+          max-width: 90%;
+          gap: 0.7rem;
+          input {
+            width: 100%;
+            font-size: 1rem;
+            border-radius: 2rem;
+            margin-bottom: 0.5rem;
+            padding: 0.5rem 2rem;
+          }
+          button {
+            width: 100%;
+            border-radius: 2rem;
+            padding: 0.7rem;
+            font-size: 1rem;
+          }
+        }
+    }
+  }
