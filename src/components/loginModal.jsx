@@ -26,7 +26,7 @@ const Login = ({ onClose }) => {
 
 
     const handleLogin = async (handleLoginSuccess) => {
-        const loginUrl = 'http://127.0.0.1:8000/api/login'; // Cambia a tu URL de login
+        const loginUrl = 'https://mindful-insight-production.up.railway.app/api/login'; // Cambia a tu URL de login
         const loginData = { email, password }; 
 
         try{

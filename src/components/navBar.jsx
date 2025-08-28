@@ -70,7 +70,7 @@ const NavBar = ({ showLoginModal, setShowLoginModal }) => {
 
         
         <div className="logo-container">
-          <img src={logo} alt="Logo" className="logo" />
+          <img src={logo} alt="Logo" className="logo" onClick={() => navigate('/home')} />
           <p>Oryon Shopping</p>
         </div>
         <Search />
