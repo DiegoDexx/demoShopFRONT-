@@ -3,7 +3,7 @@ import { FaBars, FaSearch, FaShoppingCart, FaDoorClosed, FaUser } from 'react-ic
 import { useLocation, Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import throttle from 'lodash.throttle';
-import logo from '../assets/img/logo_BLUE2.PNG';
+import logo from '../assets/img/logo_blue2.png';
 import { usePost } from "../hooks/useFetch";
 import { logoutUser } from '../actions/authActions';
 import Search from './Search';

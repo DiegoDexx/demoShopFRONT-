@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../assets/img/logo_BLUE2.PNG';
+import logo from '../assets/img/logo_blue2.png';
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaLock } from 'react-icons/fa';
 import visa from '../assets/img/Visa.png';
 import mastercard from '../assets/img/MasterCard.png';
